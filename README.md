@@ -1,7 +1,7 @@
 
 # AskWeather
 
-AskWeather is simple and minimalistic weather app build with javascipt
+AskWeather is a simple and minimalistic weather app build with Javascript
 
 
 ## Inspiration
