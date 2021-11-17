@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300&display=swap" rel="stylesheet">
+  <link rel="icon" href="icon_white\icons8-cloud-50.png" type="image/x-icon"/>
+  <link rel="shortcut icon" href="icon_white\icons8-cloud-50.png" type="image/x-icon"/>
+</head>
+<body>
+
+    <div class="main">
+        <div class="section2">
+            <div class="day_location2">
+                <div class="header2 ">
+                    <Input id="place2" class="place place2" placeholder="Search"></Input><button onclick="btnclicked()" id="searchbtn" class="btn"><i class="fa fa-search" style="color: #fff;"></i></button>
+                </div>
+                <div class="set header_mobile">
+                    
+        
+                        <div onclick="nav_generator('nav_popup2','nav_bars_svg2','cross_svg2' )" class="bar_icon">
+                            <svg id="cross_svg2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 224H31.1C14.33 224 0 238.3 0 256s14.33 32 31.1 32h384C433.7 288 448 273.7 448 256S433.7 224 416 224zM416 384H31.1C14.33 384 0 398.3 0 415.1S14.33 448 31.1 448h384C433.7 448 448 433.7 448 416S433.7 384 416 384zM416 64H31.1C14.33 64 0 78.33 0 95.1S14.33 128 31.1 128h384C433.7 128 448 113.7 448 96S433.7 64 416 64z"></path></svg>
+                       
+                            <svg id="nav_bars_svg2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" class="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path></svg>
+
+                           
+                        </div>
+
+                    
+                </div>
+               
+            </div>
+             <div class="nav_popup inactive" id="nav_popup2">
+
+                      <div class="nav_popup_cell">
+                         <p>Unit:</p>
+                           <button onclick="unit_converter('f')">Fahrenheit</button>
+                           <button onclick="unit_converter('c')">Celsius</button>
+                            </div>
+                    </div>
+           <div class="day_location">
+                <h4 id="today_date_sec2"></h4>
+                <p class="state_country" id="s_c"></p>
+            </div>
+            <div class="section2_content">
+                <div class="img_data">
+                    <img class="current_temp_img"  id="img_data_sec2" src="" alt="">
+                    <h3 id="today_temp">&nbsp;</h3>
+                </div>
+                
+                <div class="sd_desktop">
+                   
+                    <div class="short_data">
+                        <div class="row1">
+                            <p>Min Temp: <span id="min_temp_r1_1">0</span> </p> 
+                            <p>Max Temp: <span id="max_temp_r1_1">0</span></p>
+                            
+                        </div>
+                        <div class="row2">
+                            <p>Feels like: <span id="feels_like_r2_1">0</span></p>
+                            <p>Humidity: <span id="humidity_r2_1">0%</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+              
+       <!--  -->
+        </div>
+
+      
+        
+        </div>
+        <div class="section1">
+         
+            <div class="header">
+              <!--  
+                -->
+                <div class="header_content">
+                    <div class="logo">
+                        <img src="icon_white\icons8-cloud-50.png" alt="">
+                        <h1>AskWeather</h1>
+                    </div>
+                    <div class="s">
+                        <Input id="place"  class="place place2" placeholder="Search">
+                            <button onclick="btnclicked()" id="searchbtn" class="btn"><i class="fa fa-search" style="color: #fff;"></i></button>
+                        </Input>
+                        
+                    </div>
+                    <div class="set">
+                        <div onclick="nav_generator('nav_popup1','nav_bars_svg','cross_svg')" class="bar_icon">
+                            <svg id="cross_svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 224H31.1C14.33 224 0 238.3 0 256s14.33 32 31.1 32h384C433.7 288 448 273.7 448 256S433.7 224 416 224zM416 384H31.1C14.33 384 0 398.3 0 415.1S14.33 448 31.1 448h384C433.7 448 448 433.7 448 416S433.7 384 416 384zM416 64H31.1C14.33 64 0 78.33 0 95.1S14.33 128 31.1 128h384C433.7 128 448 113.7 448 96S433.7 64 416 64z"></path></svg>
+                       
+                            <svg id="nav_bars_svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" class="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path></svg>
+
+                           
+                        </div>
+                        <div class="nav_popup inactive" id="nav_popup1">
+                            <div class="nav_popup_cell">
+                         <p>Unit:</p>
+                           <button onclick="unit_converter('f')">Fahrenheit</button>
+                           <button onclick="unit_converter('c')">Celsius</button>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+               
+               </div>
+              
+            <div class="content">
+
+<div class="sd_mobile">
+    <div class="short_data ">
+        <div class="row1">
+            <p>Min Temp: <span id="min_temp_r1">0</span> </p> 
+            <p>Max Temp: <span id="max_temp_r1">0</span></p>
+            
+        </div>
+        <div class="row2">
+            <p>Feels like: <span id="feels_like_r2">0</span></p>
+            <p>Humidity: <span id="humidity_r2">0%</span></p>
+        </div>
+    </div>
+</div>
+                
+
+    <div class="headings">
+        <h2 class="content_heading">Hourly <span>Temperature</span></h2><br>    
+    </div>
+              <div class="weatherdetails">
+                <canvas id="hourlyTempChart" class="myChart" ></canvas></div>
+    <div class="headings">      
+         <h2 class="content_heading">More <span>Details</span></h2><br> 
+     </div>
+                <div class="weatherdetails">
+                    <div class="boxes" id="weatherdetails_data_main">
+                    <div class="box">
+                        <div class="icon">
+                            <img class="icon_img" src="icon_white\icons8-sunrise-50.png" alt="Cloudy">
+                            <div class="propertyname1"><p class="propertyname_para">Sunrise</p></div>
+                        </div>
+                        <div class="textcontent">
+                            <div class="contentvalue"><p class="contentvalue_para">0</p></div>
+                            <div class="propertyname2"><p class="propertyname_para">Sunrise</p></div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <img class="icon_img" src="icon_white\icons8-sunset-50.png" alt="Cloudy">
+                            <div class="propertyname1"><p class="propertyname_para">Sunset</p></div>
+                        </div>
+                        <div class="textcontent">
+                            <div class="contentvalue"><p class="contentvalue_para">0</p></div>
+                            <div class="propertyname2"><p class="propertyname_para">Sunset</p></div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <img class="icon_img" src="icon_white\icons8-humidity-50.png" alt="Cloudy">
+                            <div class="propertyname1"><p class="propertyname_para">Humidity</p></div>
+                        </div>
+                        <div class="textcontent">
+                            <div class="contentvalue"><p class="contentvalue_para">0</p></div>
+                            <div class="propertyname2"><p class="propertyname_para">Humidity</p></div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <img class="icon_img" src="icon_white\icons8-wind-50.png" alt="Cloudy">
+                            <div class="propertyname1"><p class="propertyname_para">Windspeed</p></div>
+                        </div>
+                        <div class="textcontent">
+                            <div class="contentvalue"><p class="contentvalue_para">0</p></div>
+                            <div class="propertyname2"><p class="propertyname_para">Wind</p></div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <img class="icon_img" src="icon_white\icons8-pressure-50.png" alt="Cloudy">
+                            <div class="propertyname1"><p class="propertyname_para">Pressure</p></div>
+                        </div>
+                        <div class="textcontent">
+                            <div class="contentvalue"><p class="contentvalue_para">0</p></div>
+                            <div class="propertyname2"><p class="propertyname_para">Pressure</p></div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <img class="icon_img" src="icon_white\icons8-ozone-50.png" alt="Cloudy">
+                            <div class="propertyname1"><p class="propertyname_para">UVI</p></div>
+                        </div>
+                        <div class="textcontent">
+                            <div class="contentvalue"><p class="contentvalue_para">0</p></div>
+                            <div class="propertyname2"><p class="propertyname_para">UVI</p></div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon">
+                            <img class="icon_img" src="icon_white\icons8-cloud-50.png" alt="Cloudy">
+                            <div class="propertyname1"><p class="propertyname_para">Cloud%</p></div>
+                        </div>
+                        <div class="textcontent">
+                            <div class="contentvalue"><p class="contentvalue_para">0</p></div>
+                            <div class="propertyname2"><p class="propertyname_para">Cloud%</p></div>
+                        </div>
+                    </div>
+                    <div class="info_content">
+                       
+                    <div class="box">
+                        <div class="icon">
+                            <img class="icon_img" src="icon_white\icons8-dew-point-50.png" alt="Cloudy">
+                            <div class="propertyname1"><p class="propertyname_para">Dew point </p></div>
+                            <div class="tooltip" id="deskver"><i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">The dew point is the temperature to which air must be cooled to become saturated with water vapor</span>
+                              </div>
+                        </div>
+                        <div class="textcontent">
+                            <div class="contentvalue"><p class="contentvalue_para">0</p></div>
+                            <div class="propertyname2"><p class="propertyname_para">Dewpoint</p>  <div class="tooltip"><i class="fa fa-info-circle"></i>
+                                <span class="tooltiptext">The dew point is the temperature to which air must be cooled to become saturated with water vapor</span>
+                              </div></div>
+                          
+                        </div>
+                    </div></div>
+                    <div class="box">
+                        <div class="icon">
+                            <img class="icon_img" src="icon_white\icons8-view-50.png" alt="Cloudy">
+                            <div class="propertyname1"><p class="propertyname_para">Visibility</p></div>
+                        </div>
+                        <div class="textcontent">
+                            <div class="contentvalue"><p class="contentvalue_para">0</p></div>
+                            <div class="propertyname2"><p class="propertyname_para">Visibility</p></div>
+                        </div>
+                    </div>
+    
+        
+                </div>
+                </div>   
+
+    <div class="headings">
+                <h2 class="content_heading">Air <span>Quality</span></h2><br> 
+        </div>
+                <div class="weatherdetails">
+                     <div class="aq_data">
+                            <canvas id="airquality_compo" class="doughnut_chart"  style="height: 55vh; width: 100%;"></canvas>
+                            <div class="airquality_content" id="airquality_content_id">
+                                <h4></h4>
+                                <p></p>
+                                <br><h6>Based on Current Pollutants*</p>
+                             </div>
+                              
+                             
+                    </div>
+                </div> 
+     <div class="headings">
+         <h2 class="content_heading">Air Quality <span>Forecast</span></h2><br> 
+    </div>   
+         <div class="weatherdetails">
+                     <div class="aq_data">                              
+                             <canvas id="airquality_multi" class="doughnut_chart" style="margin-top: 1.8em; width: 100%;"></canvas>
+                    </div>
+                </div> 
+    <div class="headings">
+         <h2 class="content_heading">Radar<span>Details</span></h2><br> 
+    </div>    
+         <div class="weatherdetails">
+             <div class="windy_border">
+                    <div id="windy"></div>
+                </div>
+        </div> <br>
+    <div class="headings">
+        <h2 class="content_heading">Weather <span>This Week</span></h2><br>    
+    </div>
+
+<div class="weatherdetails">
+    <canvas id="dailyTempChart" class="myChart" width="100%"></canvas>
+<button class="accordion"id="week_day_DOM1" ></button>
+
+<div class="panel"id="day_data1" >
+    <div class="short_data">
+        <div class="short_data_row1">
+            <p>Min Temp: <span id="min_temp">0</span> 
+            <p>Feels Like: <span id="max_temp">0</span></p>
+            <p>Rain% <span id="feels_like" > 0</span></p>
+            <p class="hide">Rain% <span id="feels_like" > 0</span></p>
+            
+            
+        </div>
+        <div class="short_data_row2">
+            <p>Max Temp:  <span id="max_temp"> 0</span></p>
+            <p>Humidity:  <span id="max_temp"> 0</span></p>
+            <p>UVI: <span id="humidity">0%</span></p>
+            <p class="hide">UVI: <span id="humidity">0%</span></p>
+        </div>
+    </div>
+
+</div>
+
+<button class="accordion" id="week_day_DOM2"></button>
+<div class="panel"id="day_data2" >
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+</div>
+
+<button class="accordion" id="week_day_DOM3"></button>
+<div class="panel"id="day_data3" >
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+</div>
+<button class="accordion"id="week_day_DOM4"></button>
+<div class="panel"id="day_data4" >
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+</div>
+
+<button class="accordion"id="week_day_DOM5"></button>
+<div class="panel"id="day_data5" >
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+</div>
+
+<button class="accordion"id="week_day_DOM6"></button>
+<div class="panel"id="day_data6" >
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+</div>
+<button class="accordion"id="week_day_DOM7"></button>
+<div class="panel"id="day_data7" >
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+<p>Data</p>
+</div>
+            </div>
+            
+            </div>
+            <div class="footer">
+                
+                <p>Handcrafted by <a href="#">Kartik Jobs</a> | &nbsp; <span>Version: 1.0.0</span></p>
+            </div>
+        </div>
+       
+       
+        
+    </div>
+
+</body>
+    <script src="script.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script async src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script async src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
+</html>
