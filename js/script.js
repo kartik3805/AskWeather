@@ -852,16 +852,11 @@ gradientFill.addColorStop(0, "rgba(247, 180, 44, 0.8)");
 
 
 
-
-
-
-
 ////////////For PWA popup and offline page 
 
-          
 /* Only register a service worker if it's supported */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js');
+  navigator.serviceWorker.register('/js/service-worker.js');
 }
 
 /**
@@ -873,5 +868,5 @@ if ('serviceWorker' in navigator) {
 if (window.location.protocol === 'http:') {
   const link = requireHTTPS.querySelector('a');
   link.href = window.location.href.replace('http://', 'https://');
- console.log(`This page must served over a secure https connection`)
+ console.log(`This page must served over a secure https`)
 }
