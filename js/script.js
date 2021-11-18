@@ -856,7 +856,7 @@ gradientFill.addColorStop(0, "rgba(247, 180, 44, 0.8)");
 
 /* Only register a service worker if it's supported */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/js/service-worker.js');
+  navigator.serviceWorker.register('/service-worker.js');
 }
 
 /**
