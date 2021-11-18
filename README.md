@@ -26,4 +26,4 @@ And then I decided to make a perfect weather app from my perspective which will 
 Weather data is retrieved from http://openweathermap.org/
 # Running
 
-Web version is now available on netlify, URL: 
+Web version is now available on netlify, URL: https://askweather.netlify.app/
