@@ -5,15 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sorry! you are offline</title>
+ 
     <style>
         
   /******************offline page css******************/
-
+  body{
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    color: #fff;
+    background-color: #202124;
+}
   .offline_page_elements{
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-align: center;
   }
 
   .offline_page_elements img{
@@ -22,25 +28,54 @@
   }
 
   .offline_page_elements span{
-      color: var(--tertiaryColor);
+      color: rgba(239,149,25);
       font-size: 2.2em;
       font-weight: bold;
   }
   .offline_page_elements h1{
       color: #fff;
       font-weight: 300;
+      margin: 0%;
 
   }
-
-  
-
   .offline_page_elements a{
      padding: 0.9em;
      background-color: #fff;
-     color: var(--secondaryColor);
+     color: #292a2d;
      margin: 1em;
      border-radius: 0.5em;
      text-decoration: none;
+  }
+
+  @media only screen and (max-width: 600px) {
+      .offline_page_elements{
+          margin-left: 0.1em;
+          margin-right: 0.1em;
+      }
+    .offline_page_elements img{
+      width: 75vw;
+      height: auto;
+  }
+
+  .offline_page_elements span{
+      color: rgba(239,149,25);
+      font-size: 1.5em;
+      font-weight: bold;
+  }
+  .offline_page_elements h1{
+      color: #fff;
+      font-weight: 300;
+      margin: 0%;
+
+  }
+  .offline_page_elements a{
+     padding: 0.9em;
+     background-color: #fff;
+     color: #292a2d;
+     margin: 1em;
+     border-radius: 0.5em;
+     text-decoration: none;
+  }
   }
     </style>
 </head>

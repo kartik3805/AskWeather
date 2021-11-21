@@ -924,7 +924,7 @@ body{
 
 /*********Fade iN animation**********/
 
-#today_temp, .nav_popup{
+#today_temp, .nav_popup, .popup{
     animation: fadein 2s;
     -moz-animation: fadein 2s; /* Firefox */
     -webkit-animation: fadein 800ms; /* Safari and Chrome */
@@ -985,6 +985,8 @@ body{
    font-weight: 600;
    color: rgb(255, 255, 255,0.5);
   }
+
+
 
 
 
