@@ -505,9 +505,23 @@ gradientFill.addColorStop(0, "rgba(247, 180, 44, 0.8)");
     
 
     ///////For User Manual Search
+
+   
+
+
+    document.body.addEventListener('keydown',function(e){
+       if(e.code === 'Enter'){
+          btnclicked()
+       }
+    });
+    document.getElementById('close_popup').addEventListener('click',function(e){
+      document.getElementById('popup').style.display='none'
+    })
+    
       function btnclicked(){
         let search1 = document.getElementById('place').value
         let search2 = document.getElementById('place2').value
+    
         let user_input_city;
         if( search2 === ''){
           user_input_city = search1
@@ -527,12 +541,34 @@ gradientFill.addColorStop(0, "rgba(247, 180, 44, 0.8)");
           oneCall(json[0].lat,json[0].lon ); ///To get current a daily data 
           windy_api(json[0].lat, json[0].lon); ///For radar
           pollution_forecast_call(json[0].lat, json[0].lon);  ///For pollution data
+          document.getElementById('popup').style.display='none'
         })
         .catch((err) => {
-          console.log('Error:', err);
+          console.log('Error:', err.name);
+          console.log(typeof(err.stack))
+
+          if(err.name === 'TypeError'){
+            document.getElementById('sec11').addEventListener('mousedown',function(e){
+              console.log(e.button)
+              if(e.button === 0){
+                document.getElementById('popup').style.display='none'
+              }
+            })
+            document.getElementById('popup').style.display='block'
+            document.getElementById('popup-content').innerHTML=`
+            <p class='popup-content-err-message'>Can't find any result for the query,<span> ${search1}${search2}</span></p>
+            <p class = 'popup-content-try-again'>Please check the input query and try again</p>
+
+            `
+          
+          }
+    
+        
         });
         
       }
+
+    
 
     /////To genrate both bar and line chart
      function genChart(parameter1, parameter2,parameter3,parameter4,parameter5){
