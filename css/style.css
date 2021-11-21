@@ -988,43 +988,6 @@ body{
 
 
 
-  /******************offline page css******************/
-
-  .offline_page_elements{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  }
-
-  .offline_page_elements img{
-      width: 25vw;
-      height: auto;
-  }
-
-  .offline_page_elements span{
-      color: var(--tertiaryColor);
-      font-size: 2.2em;
-      font-weight: bold;
-  }
-  .offline_page_elements h1{
-      color: #fff;
-      font-weight: 300;
-
-  }
-
-  
-
-  .offline_page_elements a{
-     padding: 0.9em;
-     background-color: #fff;
-     color: var(--secondaryColor);
-     margin: 1em;
-     border-radius: 0.5em;
-     text-decoration: none;
-  }
-
-
 
 
 /***************Scrollbar css*****************/
