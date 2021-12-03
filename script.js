@@ -45,7 +45,8 @@ if (navigator.geolocation) {
     pollution_forecast_call(user_location.lat,user_location.lon); // Air Quality Data
 
     /// Reverse GeoDecoding for displaying name in section 2/////
-    geoDecoding_reverse(user_location.lat, user_location.lon)
+   // geoDecoding_reverse(user_location.lat, user_location.lon)
+    covid_data_func(`${user_location.lon},${user_location.lat}`, true)
     
   }
 }
@@ -319,7 +320,7 @@ console.log(json)
                 
                   
                   );
-          console.log(air_comp_val)
+          
           
                   gen_doughchart(air_comp,air_comp_val,"airquality_compo")
                   console.log(json);
@@ -490,24 +491,10 @@ gradientFill.addColorStop(0, "rgba(247, 180, 44, 0.8)");
       }
 
     /////For reverse geo decoding
-      function geoDecoding_reverse(parameter1,parameter2){
-        fetch('https://api.openweathermap.org/geo/1.0/' + 'reverse' + '?lat=' + parameter1 + '&lon='+ parameter2 +  '&appid=' + openWeatherapi)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(json) {
-               //Manipulate city name in DOM
-             console.log(json)
-                document.getElementById('s_c').innerHTML = json[0].name + ',&nbsp'+json[0].country;
-        });
-        
-      }
-    
 
     ///////For User Manual Search
 
-   
-
+    
 
     document.body.addEventListener('keydown',function(e){
        if(e.code === 'Enter'){
@@ -528,15 +515,19 @@ gradientFill.addColorStop(0, "rgba(247, 180, 44, 0.8)");
         }else{
           user_input_city =  search2
         }
-       
-        console.log(user_input_city)
+    
+        covid_data_func(user_input_city)
         
+
         ////To get user lat and long from string
         fetch('https://api.openweathermap.org/geo/1.0/' + 'direct' + '?q=' + user_input_city +  '&appid=' + openWeatherapi)
         .then(function(response) {
           return response.json();
         })
         .then(function(json) {
+          console.log(json)
+     //https://api.mapbox.com/geocoding/v5/mapbox.places/newyork.json?access_token=pk.eyJ1IjoiYXNzc3Nzc3Nzc3Nzc3MiLCJhIjoiY2t3Z3JtdGJtMDg5ZDJxb3cyNjZiM3IwOCJ9.iw12YCJIds8snJUnN_Sa5Q
+
           document.getElementById('s_c').innerHTML = json[0].name + ',&nbsp'+json[0].country; ///To change section 2 Place name
           oneCall(json[0].lat,json[0].lon ); ///To get current a daily data 
           windy_api(json[0].lat, json[0].lon); ///For radar
@@ -685,6 +676,10 @@ gradientFill.addColorStop(0, "rgba(247, 180, 44, 0.8)");
          return response.json();
        })
        .then(function(json) {
+
+
+        console.log(json)
+
          let eight_hr_time = [];
          let air_fore_co =[];
          let air_fore_o3 =[];
@@ -704,7 +699,7 @@ gradientFill.addColorStop(0, "rgba(247, 180, 44, 0.8)");
        
        //For 6 hour inteval in data
          for(let u=0;u<10;u++){
-           let i = u*6
+           let i = u*4
 
             eight_hr_time.push(unix_convert(json.list[i].dt))
             air_fore_co.push(json.list[i].components.co/10)
@@ -891,3 +886,143 @@ gradientFill.addColorStop(0, "rgba(247, 180, 44, 0.8)");
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js');
 }
+
+//Function to retreive covid data
+
+ function covid_data_func (parameter1, parameter2){
+          
+        fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${parameter1}.json?access_token=pk.eyJ1IjoiYXNzc3Nzc3Nzc3Nzc3MiLCJhIjoiY2t3Z3JtdGJtMDg5ZDJxb3cyNjZiM3IwOCJ9.iw12YCJIds8snJUnN_Sa5Q`)
+        .then(function(response){
+          return response.json();
+        })
+        .then(function(json){
+
+          if(parameter2 === true){
+          document.getElementById('s_c').innerHTML =json.features[0].context[2].text + ',&nbsp'+json.features[0].context[4].text
+          }
+           console.log(json)
+          let mapbox_api_place_name;
+          let mapbox_api_country_name;
+
+          if(json.features[0].place_type[0] === 'country' ){
+            mapbox_api_place_name = json.features[0].text;
+            mapbox_api_country_name = json.features[0].text;
+            console.log('country')
+          }else if(json.features[0].place_type[0] === 'region'){
+            mapbox_api_place_name = json.features[0].text;
+            mapbox_api_country_name = json.features[0].context[0].text;
+            console.log('region')
+          }else if(json.features[0].place_type[0] === 'locality'){
+            mapbox_api_place_name = json.features[0].context[2].text;
+            mapbox_api_country_name = json.features[0].context[3].text;
+          }else if(json.features[0].place_type[0] === 'poi'){
+            mapbox_api_place_name = json.features[0].context[3].text;
+            mapbox_api_country_name = json.features[0].context[4].text;
+          }
+          else{
+            mapbox_api_place_name = json.features[0].context[1].text;
+            mapbox_api_country_name = json.features[0].context[2].text;
+            console.log('state')
+
+            
+          }
+        
+      
+   
+
+          let d = new Date();
+         
+         console.log(d.getFullYear() + '-'+ (d.getUTCMonth()+1)+'-'+d.getDate())
+          fetch(`https://api.covid19api.com/live/country/${mapbox_api_country_name}/status/confirmed/date/${d.getFullYear() + '-'+(d.getMonth()+1)+'-'+(d.getDate()-2)}`)
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(json) {
+
+            console.log(json)
+
+            let covid_cases_data_consolidated ={}
+            let covid_cases_data_active=[]
+            let covid_cases_data_confirmed=[]
+            let covid_cases_data_deaths=[]
+            for(let i = 0; i < json.length; i++){
+              if(json[i].Province === mapbox_api_place_name || json[i].Country === mapbox_api_place_name ){
+                covid_cases_data_active.push(json[i].Active)
+                covid_cases_data_confirmed.push(json[i].Confirmed)
+                covid_cases_data_deaths.push(json[i].Deaths)
+
+                covid_cases_data_consolidated.state  = json[i].Province
+                covid_cases_data_consolidated.country  = json[i].Country
+              
+        
+              }
+
+                 }
+       
+              
+               
+
+           covid_cases_data_consolidated.active  = covid_cases_data_active[1]
+           covid_cases_data_consolidated.confirmed  = covid_cases_data_confirmed[1]
+           covid_cases_data_consolidated.deaths  = covid_cases_data_deaths[1]
+           covid_cases_data_consolidated.active_change  = covid_cases_data_active[1] - covid_cases_data_active[0]
+           covid_cases_data_consolidated.confirmed_change  = covid_cases_data_confirmed[1] - covid_cases_data_confirmed[0]
+           covid_cases_data_consolidated.deaths_change  = covid_cases_data_deaths[1] - covid_cases_data_deaths[0]
+           
+
+           console.log(covid_cases_data_consolidated.confirmed_change)
+           console.log(Math.sign(covid_cases_data_consolidated.active_change))
+           console.log(covid_cases_data_active)
+      
+       
+           function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function sign_converter(parameter){
+          if( 1 === Math.sign(parameter)){
+           return '+'+Math.abs(parameter)
+          }else if(-1 === Math.sign(parameter)){
+            return'-'+Math.abs(parameter)
+          }else{
+            return Math.abs(parameter)
+          }
+        }
+
+           document.getElementById('covid_data_table').innerHTML =`
+           
+
+           <div class="table_header">
+                 <p>DATA For:<span> ${covid_cases_data_consolidated.state}</span></p>
+                 <p>Last updated: <span>${d.getFullYear() + '-'+(d.getMonth()+1)+'-'+(d.getDate()-1)}</span></p>
+             </div>
+             <div class="cards_collection">
+                <div class="cards">
+                    <div class="card_header">Confirmed</div>
+                    <div class="card_top_sec">${ numberWithCommas(covid_cases_data_consolidated.confirmed)}</div>
+                    <div class="card_data_change">${sign_converter(covid_cases_data_consolidated.confirmed_change)}</div>
+                </div>
+                <div class="cards">
+                    <div class="card_header">Active</div>
+                    <div class="card_top_sec">${numberWithCommas(covid_cases_data_consolidated.active)}</div>
+                    <div class="card_data_change">${sign_converter(covid_cases_data_consolidated.active_change)}</div>
+                </div>
+                <div class="cards">
+                    <div class="card_header">Deaths</div>
+                    <div class="card_top_sec">${numberWithCommas(covid_cases_data_consolidated.deaths)}</div>
+                    <div class="card_data_change">${sign_converter(covid_cases_data_consolidated.deaths_change)}</div>
+                </div>
+             </div>
+           `
+          })
+          
+
+         
+        
+
+         
+        })
+        }
+
+
+       

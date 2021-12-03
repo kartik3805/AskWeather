@@ -4,7 +4,7 @@
     "description": "Minimal weather app",
     "icons": [
       {
-        "src": "icon_white/icons8-cloud-50.png",
+        "src": "icon_white/app_icon_black.png",
         "sizes": "48x48",
         "type": "image/x-icon"
       },
