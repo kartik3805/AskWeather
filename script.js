@@ -912,17 +912,12 @@ if ('serviceWorker' in navigator) {
             mapbox_api_place_name = json.features[0].text;
             mapbox_api_country_name = json.features[0].context[0].text;
             console.log('region')
-          }else if(json.features[0].place_type[0] === 'locality'){
-            mapbox_api_place_name = json.features[0].context[2].text;
-            mapbox_api_country_name = json.features[0].context[3].text;
-          }else if(json.features[0].place_type[0] === 'poi'){
-            mapbox_api_place_name = json.features[0].context[3].text;
-            mapbox_api_country_name = json.features[0].context[4].text;
           }
           else{
-            mapbox_api_place_name = json.features[0].context[1].text;
-            mapbox_api_country_name = json.features[0].context[2].text;
-            console.log('state')
+            console.log('--------------length '+ (parseInt(json.features[0].context.length) - 1) )
+            mapbox_api_place_name = json.features[0].context[(parseInt(json.features[0].context.length) - 2)].text;
+            mapbox_api_country_name = json.features[0].context[(parseInt(json.features[0].context.length) - 1)].text;
+            console.log('universal')
 
             
           }
@@ -1024,5 +1019,3 @@ if ('serviceWorker' in navigator) {
         })
         }
 
-
-       
