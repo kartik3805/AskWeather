@@ -925,10 +925,10 @@ if ('serviceWorker' in navigator) {
       
    
 
-          let d = new Date();
+          let d = new Date(new Date().getTime() - 48*60*60*1000);
          
          console.log(d.getFullYear() + '-'+ (d.getUTCMonth()+1)+'-'+d.getDate())
-          fetch(`https://api.covid19api.com/live/country/${mapbox_api_country_name}/status/confirmed/date/${d.getFullYear() + '-'+(d.getMonth()+1)+'-'+(d.getDate()-2)}`)
+          fetch(`https://api.covid19api.com/live/country/${mapbox_api_country_name}/status/confirmed/date/${d.getFullYear() + '-'+(d.getMonth()+1)+'-'+(d.getDate())}`)
           .then(function(response) {
             return response.json();
           })
