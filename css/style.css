@@ -583,6 +583,15 @@ body{
     border-radius: 0.8em;
 }
 
+.covid_data_table .cards{
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    color: var(--tertiaryColor);
+    padding: 1rem;
+    text-align: center;
+}
+
 .table_header{
     display: flex;
     justify-content: space-between;
