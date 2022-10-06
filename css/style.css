@@ -388,7 +388,7 @@ body{
 
     .set{
         font-size: 1.5em;
-        width: 10%;
+        width: 10%; 
     }
 
    
@@ -399,9 +399,10 @@ body{
         align-items: center;
         justify-content: flex-end;
         height: 100%;
+        cursor:pointer;
     }
 
-    
+
     .nav_popup{
         display: none;
         backdrop-filter: blur( 9px );
