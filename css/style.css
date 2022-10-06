@@ -434,6 +434,7 @@ body{
         outline: none;
         margin-left: 0.3em;
         background-color: white;
+        cursor: pointer;
     }
    
 
